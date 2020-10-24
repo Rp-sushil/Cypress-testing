@@ -6,7 +6,6 @@ describe('Testing Simple App', () =>{
     beforeEach(() => {
         cy.visit('../index.html');
     })
-
     it('Adding two +ve number', () =>{
         cy.get('#num1').type('1');
         cy.get('#num2').type('2');
@@ -19,6 +18,15 @@ describe('Testing Simple App', () =>{
     it('Adding +ve and -ve number', () =>{
         cy.get('#num1').type('3');
         cy.get('#num2').type('-4');
+        cy.get('#mybtn').click();
+        cy.get('#result').should(($result) =>{
+            var x = $result.val();
+            expect(x).to.equal('-1');
+        });
+    });
+    it('Addition with Zero', () =>{
+        cy.get('#num1').type('0');
+        cy.get('#num2').type('-1');
         cy.get('#mybtn').click();
         cy.get('#result').should(($result) =>{
             var x = $result.val();
